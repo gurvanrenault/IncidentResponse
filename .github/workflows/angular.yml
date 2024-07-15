@@ -22,8 +22,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: |
-            pwd
-    - run: |
             cd frontend/IncidentResponse
             npm install
     - run: |
@@ -41,8 +39,6 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-    - run: |  
-          pwd 
     - run: |
           cd frontend/IncidentResponse
           npm install
