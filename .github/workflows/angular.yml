@@ -25,6 +25,7 @@ jobs:
             cd frontend/IncidentResponse
             npm install
     - run: |
+            pwd
             cd frontend/IncidentResponse
             npm run build --if-present
   test:
@@ -36,5 +37,6 @@ jobs:
     steps:
   
     - run: |  
+          pwd
           cd frontend/IncidentResponse
           npm test;ci
