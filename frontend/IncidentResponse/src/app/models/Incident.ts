@@ -6,7 +6,7 @@ export class Incident {
     id !: number;
     description !: string;
     priorite !: PrioriteEnum
-    utilisateur ?: Utilisateur ;
+    utilisateur ?: number ;
     commentaires ?:Commentaire 
     date !: Date
 }

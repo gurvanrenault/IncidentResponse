@@ -9,3 +9,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   h1{
     text-align: center;
   }
+  form{
+    display: flex;
+    flex-direction: column !important;
+    width: 70%;
+    margin: auto;
+  }
+  .btnsubmit{
+    display: inline;
+    width: 30vh;
+    height: 7vh;
+    margin-left: 1vh;
+  }
