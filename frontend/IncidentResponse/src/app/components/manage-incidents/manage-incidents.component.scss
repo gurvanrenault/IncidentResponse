@@ -1,11 +1,20 @@
 
 form{
-    padding-left: 15%;
+    width: 90%;
     margin: auto;
+    align-items: center;
 }
 mat-form-field{
-    width: 75vh;
+    width: 100%;
+    margin: auto;
 }
 textarea{
-    width: 100%;
+    width: 80%;
+    margin: auto;
 }
+.btnsubmit{
+    display: inline;
+    width: 40%;
+    height: 5vh;
+    margin-left: 1vh;
+  }

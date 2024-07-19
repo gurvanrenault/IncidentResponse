@@ -10,12 +10,17 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
 import { Utilisateur } from '../../models/Utilisateur';
+import { IncidentService } from '../../services/incidentService/incident.service';
+import { UtilisateurService } from '../../services/utilisateurService/utilisateur.service';
+import { MatDialogModule,MatDialogRef} from '@angular/material/dialog';
+
 @Component({
   selector: 'app-manage-incidents',
   standalone: true,
+  providers: [IncidentService,UtilisateurService],
   imports: [CommonModule,
+    MatDialogModule,
     MatFormFieldModule,
-   
     MatInputModule, 
     ReactiveFormsModule,
     FormsModule,
@@ -30,35 +35,39 @@ import { Utilisateur } from '../../models/Utilisateur';
 
 export class ManageIncidentsComponent implements OnInit {
 
-
-
-
-
-
-  utilisateurs : Array<Utilisateur>= [
-    {id:0, mail: "test@gmail;com", nom: "Telsa",prenom: "Nicolas",entreprise:"Tesla"},
-    {id:1, mail: "test@gmail;com", nom: "Edison",prenom: "Mark",entreprise:"Tesla"}
-  ];
-
   incidentForm:FormGroup  = new FormGroup(
     {
       description: new FormControl<string>('', Validators.required),
       priorite : new FormControl<PrioriteEnum>(1,Validators.required),
       utilisateur : new FormControl<number>(-1)
     }
-  )
+  );
+  
+  utilisateurs :Array<Utilisateur> ;
+  prioriteKeys = Object.entries(PrioriteEnum).slice(Object.entries(PrioriteEnum).length/2,Object.entries(PrioriteEnum).length);
 
-  prioriteKeys = Object.entries(PrioriteEnum).slice(Object.entries(PrioriteEnum).length/2,Object.entries(PrioriteEnum).length)
-
+  constructor(private incidentService:IncidentService,
+              private utilisateurService:UtilisateurService,
+              public dialogRef: MatDialogRef<ManageIncidentsComponent>
+  ){
+    this.utilisateurs = this.utilisateurService.getUtilisateurs();
+  }
+  
   ngOnInit(){
+  
   }
   
   public soumettreCreation():void {
     if (this.incidentForm.valid ){
       const incident = this.incidentForm.value as Incident
-      console.log(incident)
+      this.incidentService.addIncident(incident)
+      console.log(this.incidentService.getIncidents())
+      this.closeDialog
     }
     
+  }
+  public closeDialog(){
+    this.dialogRef.close()
   }
 }
 
