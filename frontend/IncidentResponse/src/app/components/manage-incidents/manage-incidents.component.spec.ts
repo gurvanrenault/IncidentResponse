@@ -1,14 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ManageIncidentsComponent } from './manage-incidents.component';
+import { MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS, MatDialogRef } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('ManageIncidentsComponent', () => {
   let component: ManageIncidentsComponent;
   let fixture: ComponentFixture<ManageIncidentsComponent>;
-
+  const matDialogSpy = jasmine.createSpyObj('MatDialogRef', ['onNoClick', 'closeDialog']);
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ManageIncidentsComponent]
+      imports: [ManageIncidentsComponent, BrowserAnimationsModule,],
+      providers: [
+        { provide: MatDialogRef, useValue: matDialogSpy },
+
+      ]
     })
     .compileComponents();
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import { Incident } from '../../models/Incident';
 import { PrioriteEnum } from '../../enums/PrioriteEnum';
@@ -12,13 +12,16 @@ import {MatButtonModule} from '@angular/material/button';
 import { Utilisateur } from '../../models/Utilisateur';
 import { IncidentService } from '../../services/incidentService/incident.service';
 import { UtilisateurService } from '../../services/utilisateurService/utilisateur.service';
-import { MatDialogModule,MatDialogRef} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogModule,MatDialogRef} from '@angular/material/dialog';
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'app-manage-incidents',
   standalone: true,
-  providers: [IncidentService,UtilisateurService],
+  animations:[],
+  providers: [IncidentService,UtilisateurService,provideAnimations()],
   imports: [CommonModule,
+
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule, 

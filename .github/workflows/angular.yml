@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.X,20.X,22.X]
+        node-version: [18.X,20.X,22.4.X]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -23,9 +23,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: |
             cd frontend/IncidentResponse
-            npm install 
-    - run: |
-            cd frontend/IncidentResponse
             npm cache verify
             npm install 
             npm run build --if-present
@@ -34,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.X,20.X,22.X]
+        node-version: [18.X,20.X,22.4.X]
     steps:
     - uses: actions/checkout@v4
     - name: Test Angular ${{ matrix.node-version }}

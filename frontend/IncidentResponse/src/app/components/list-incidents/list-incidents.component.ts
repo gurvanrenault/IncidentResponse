@@ -2,9 +2,6 @@ import { Component } from '@angular/core';
 import { ManageIncidentsComponent } from '../manage-incidents/manage-incidents.component';
 import {
   MatDialog,
-  MAT_DIALOG_DATA,
-  MatDialogTitle,
-  MatDialogContent,
   MatDialogRef,
 } from '@angular/material/dialog'
 @Component({
