@@ -18,14 +18,16 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
     - run: |
             cd frontend/IncidentResponse
-            npm install
+            npm install 
     - run: |
             cd frontend/IncidentResponse
+            npm cache verify
+            npm install 
             npm run build --if-present
   test:
     needs: [build]
@@ -36,10 +38,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Test Angular ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
     - run: |
           cd frontend/IncidentResponse
+          npm cache verify
           npm install
           npm run test:ci
