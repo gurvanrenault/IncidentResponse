@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-
+import { ManageIncidentsComponent } from '../manage-incidents/manage-incidents.component';
+import {
+  MatDialog,
+  MatDialogRef,
+} from '@angular/material/dialog'
 @Component({
   selector: 'app-list-incidents',
   standalone: true,
@@ -7,6 +11,18 @@ import { Component } from '@angular/core';
   templateUrl: './list-incidents.component.html',
   styleUrl: './list-incidents.component.scss'
 })
-export class ListIncidentsComponent {
+export class ListIncidentsComponent  {
 
+  dialogCreationIncident: MatDialogRef<ManageIncidentsComponent> | undefined 
+  constructor(public dialog: MatDialog) {
+    this.openDialog()
+
+  }
+
+  public openDialog(){
+      this.dialogCreationIncident = this.dialog.open(ManageIncidentsComponent,{
+        height: '500px',
+        width: '1000px',
+    })
+  }
 }
