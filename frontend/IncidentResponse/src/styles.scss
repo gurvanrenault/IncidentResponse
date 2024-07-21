@@ -21,3 +21,36 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     height: 7vh;
     margin-left: 1vh;
   }
+  .edit-icon{
+    color: darkgrey;
+  }
+  .edit-icon:hover{
+    color: black;
+  }
+  .delete-icon{
+    color: darkgrey;
+  }
+  .delete-icon:hover{
+    color: red;
+  }
+  tr:hover{
+    background-color: aliceblue;
+  }
+.badge{
+  padding: 4px 8px;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: bold;
+  width: 20px;
+}
+.badge-warning{
+ background-color: #ffc107 !important;
+}
+.badge-danger{
+  background-color: #c65252;
+  color: whitesmoke;
+}
+.badge-secondary{
+    color: whitesmoke;
+    background-color: #6c757d
+}

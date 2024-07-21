@@ -1,1 +1,50 @@
-<p>list-incidents works!</p>
+
+
+<div class="table-container">
+    <div class="table_controllers">
+        <div class="filter_container">
+            
+        </div>
+        <div class="actions_container">
+            <button mat-flat-button (click)="ouvrirPopUpCreationIncident()">
+                <mat-icon>add</mat-icon> Ajouter un incident
+            </button>
+        </div>
+    </div>
+    <table  mat-table [dataSource]="incidents$">
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> Id </th>
+            <td mat-cell *matCellDef="let element"> # {{element.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="titre">
+            <th mat-header-cell *matHeaderCellDef> Titre </th>
+            <td mat-cell *matCellDef="let element"> {{element.titre}} </td>
+        </ng-container>
+        <ng-container matColumnDef="utilisateur">
+            <th mat-header-cell *matHeaderCellDef> Utilisateur assigné </th>
+            <td mat-cell *matCellDef="let element"> {{recupererUtilisateurNomById(element.utilisateur)}} </td>
+        
+        </ng-container>
+        <ng-container matColumnDef="priorite">
+            <th mat-header-cell *matHeaderCellDef> Priorité </th>
+            <td mat-cell *matCellDef="let element"> <app-priorite-info [value]="element.priorite"></app-priorite-info> </td>
+        </ng-container> 
+        <ng-container matColumnDef="statut">
+            <th mat-header-cell *matHeaderCellDef> Statut </th>
+            <td mat-cell *matCellDef="let element"> <app-statut-incident-info [value]="element.statut"></app-statut-incident-info> </td>
+        </ng-container>   
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>   
+            <td mat-cell *matCellDef="let element"> 
+            
+            <mat-icon class="edit-icon">visibility</mat-icon>
+            <mat-icon class="edit-icon">edit</mat-icon>
+            <mat-icon class="delete-icon">delete</mat-icon>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="colonnesAffiches"></tr>
+        <tr mat-row *matRowDef="let row; columns: colonnesAffiches;"></tr>
+    </table>
+</div>
+

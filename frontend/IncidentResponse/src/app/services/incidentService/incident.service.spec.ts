@@ -4,7 +4,7 @@ import { IncidentService } from './incident.service';
 
 describe('IncidentService', () => {
   let service: IncidentService;
-
+    
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(IncidentService);

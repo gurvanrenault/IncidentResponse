@@ -19,9 +19,8 @@ import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-br
   selector: 'app-manage-incidents',
   standalone: true,
   animations:[],
-  providers: [IncidentService,UtilisateurService,provideAnimations()],
+  providers: [provideAnimations()],
   imports: [CommonModule,
-
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule, 
@@ -40,6 +39,7 @@ export class ManageIncidentsComponent implements OnInit {
 
   incidentForm:FormGroup  = new FormGroup(
     {
+      titre : new FormControl<string>('', Validators.required),
       description: new FormControl<string>('', Validators.required),
       priorite : new FormControl<PrioriteEnum>(1,Validators.required),
       utilisateur : new FormControl<number>(-1)
@@ -64,8 +64,7 @@ export class ManageIncidentsComponent implements OnInit {
     if (this.incidentForm.valid ){
       const incident = this.incidentForm.value as Incident
       this.incidentService.addIncident(incident)
-      console.log(this.incidentService.getIncidents())
-      this.closeDialog
+      this.closeDialog()
     }
     
   }
