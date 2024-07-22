@@ -21,9 +21,13 @@ export class IncidentService {
     incident.date = new Date()
     incident.id= this._currentid
     incident.statut = StatutIncidentEnum.TODO
-    console.log(this._currentid)
-    this._incidentsSubject.next([...this._incidentsSubject.value,{...incident}])
-    console.log(this._incidentsSubject.value)
+  }
+
+  public supprimerIncident(idIncident:number){
+    let incidents = this._incidentsSubject.value
+    var elementPos = incidents.map(function(x) {return x.id; }).indexOf(idIncident);
+    incidents.splice(elementPos,1)
+    this._incidentsSubject.next(incidents)
   }
 
 

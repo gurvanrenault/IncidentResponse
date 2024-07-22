@@ -26,6 +26,8 @@ import { StatutIncidentInfoComponent } from "../statut-incident-info/statut-inci
 })
 export class ListIncidentsComponent implements OnInit {
 
+
+
   dialogCreationIncident: MatDialogRef<ManageIncidentsComponent> | undefined 
   incidents$: Observable<Incident[]>;
   colonnesAffiches = ['id','titre','utilisateur','priorite','statut','actions']
@@ -49,4 +51,19 @@ export class ListIncidentsComponent implements OnInit {
     const util = this.utilisateurService.getUtilisateurById(idUtil);
     return  util === undefined ? 'Non Spécifié' : util.nom.toUpperCase() + ' '+ util.prenom;
   }
+  public supprimerIncident(id:number) {
+    this.incidentService.supprimerIncident(id);
+  }
+
+  public afficherIncident(arg0: any) {
+    throw new Error('Method not implemented.');
+    }
+  public editIncident(arg0: any) {
+    throw new Error('Method not implemented.');
+    }
+    
+
+
+
+
 }
