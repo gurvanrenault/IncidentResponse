@@ -1,6 +1,6 @@
 
 <title mat-dialog-title> Créer un incident</title>
-<form [formGroup]="incidentForm" (ngSubmit)="soumettreCreation()" >
+<form [formGroup]="incidentForm" (ngSubmit)=" edit ?  soumettreModification() : soumettreCreation()" >
     
     <mat-dialog-content>
         <mat-form-field  >
@@ -20,6 +20,14 @@
                 </mat-option>
             </mat-select>
         </mat-form-field >
+        <mat-form-field *ngIf="edit===true">  
+            <mat-label>Priorité</mat-label>
+            <mat-select matNativeControl class="form-select form-select-sm" formControlName="statut" >
+                <mat-option *ngFor="let pKey  of statutKeys" [value]="pKey[1]">
+                    {{pKey[0]}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field >
         <mat-form-field>  
             <mat-label>Utilisateur</mat-label>
             <mat-select matNativeControl class="form-select form-select-sm" formControlName="utilisateur" >
@@ -31,8 +39,8 @@
     </mat-dialog-content>
     <mat-dialog-actions>
             <button mat-raised-button class="btnsubmit" (click)="closeDialog()" >Retour à la liste des incidents</button>
-            <button mat-flat-button class="btnsubmit" type="submit" >Créer un incident</button>
-        
+            <button *ngIf="!edit"  mat-flat-button class="btnsubmit" type="submit" >Créer un incident</button>
+            <button *ngIf="edit"  mat-flat-button class="btnsubmit" type="submit" >Modifier un incident</button>
     </mat-dialog-actions>
 </form>
     

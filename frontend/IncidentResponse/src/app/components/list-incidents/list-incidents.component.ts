@@ -45,6 +45,7 @@ export class ListIncidentsComponent implements OnInit {
         height: '500px',
         width: '1000px',
     })
+    this.dialogCreationIncident.componentInstance.edit = false;
   }
 
   public recupererUtilisateurNomById(idUtil: number){
@@ -58,8 +59,13 @@ export class ListIncidentsComponent implements OnInit {
   public afficherIncident(arg0: any) {
     throw new Error('Method not implemented.');
     }
-  public editIncident(arg0: any) {
-    throw new Error('Method not implemented.');
+  public editIncident(id: number) {
+    this.dialogCreationIncident = this.dialog.open(ManageIncidentsComponent,{
+      height: '500px',
+      width: '1000px',
+  })
+    this.dialogCreationIncident.componentInstance.edit = true;
+    this.dialogCreationIncident.componentInstance.idEdit = id;
     }
     
 
