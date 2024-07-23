@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PrioriteInfoComponent } from './priorite-info.component';
+import { PriorityInfoComponent } from './priority-info.component';
 
 describe('PrioriteInfoComponent', () => {
-  let component: PrioriteInfoComponent;
-  let fixture: ComponentFixture<PrioriteInfoComponent>;
+  let component: PriorityInfoComponent;
+  let fixture: ComponentFixture<PriorityInfoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PrioriteInfoComponent]
+      imports: [PriorityInfoComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PrioriteInfoComponent);
+    fixture = TestBed.createComponent(PriorityInfoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

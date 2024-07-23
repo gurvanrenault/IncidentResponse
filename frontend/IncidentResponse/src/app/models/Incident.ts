@@ -1,15 +1,15 @@
-import { PrioriteEnum } from "../enums/PrioriteEnum";
-import { StatutIncidentEnum } from "../enums/StatutIncidentEnum";
-import { Commentaire } from "./Commentaire";
-import { Utilisateur } from "./Utilisateur";
+import { PriorityEnum } from "../enums/PriorityEnum";
+import { StatusIncidentEnum } from "../enums/StatutsIncidentEnum";
+import { Commentary } from "./Commentary";
+import { User } from "./User";
 
 export class Incident {
     id !: number;
-    titre !:string;
+    title !:string;
     description !: string;
-    priorite !: PrioriteEnum;
-    statut !: StatutIncidentEnum;
-    utilisateur ?: number ;
-    commentaires ?:Commentaire[]; 
+    priority !: PriorityEnum;
+    status !: StatusIncidentEnum;
+    user ?: number ;
+    commentary ?:Commentary[]; 
     date !: Date
 }

@@ -11,16 +11,16 @@ import { Incident } from '../../models/Incident';
 import { IncidentService } from '../../services/incidentService/incident.service';
 import { Observable } from 'rxjs';
 import { CommonModule, DatePipe } from '@angular/common';
-import { PrioriteInfoComponent } from "../priorite-info/priorite-info.component";
-import { Utilisateur } from '../../models/Utilisateur';
-import { UtilisateurService } from '../../services/utilisateurService/utilisateur.service';
-import { StatutIncidentInfoComponent } from "../statut-incident-info/statut-incident-info.component";
+import { PriorityInfoComponent } from "../priority-info/priority-info.component";
+import { User } from '../../models/User';
+import { UserService } from '../../services/userService/user.service';
+import { StatusIncidentInfoComponent } from "../status-incident-info/status-incident-info.component";
 
 @Component({
   selector: 'app-list-incidents',
   standalone: true,
   providers: [DatePipe],
-  imports: [CommonModule, MatIconModule, MatButtonModule, MatTableModule, PrioriteInfoComponent, StatutIncidentInfoComponent],
+  imports: [CommonModule, MatIconModule, MatButtonModule, MatTableModule, PriorityInfoComponent, StatusIncidentInfoComponent],
   templateUrl: './list-incidents.component.html',
   styleUrl: './list-incidents.component.scss'
 })
@@ -30,10 +30,10 @@ export class ListIncidentsComponent implements OnInit {
 
   dialogCreationIncident: MatDialogRef<ManageIncidentsComponent> | undefined 
   incidents$: Observable<Incident[]>;
-  colonnesAffiches = ['id','titre','utilisateur','priorite','statut','actions']
+  displayColumns = ['id','title','user','priority','status','actions']
   constructor(public dialog: MatDialog,
               private incidentService:IncidentService,
-              private utilisateurService:UtilisateurService
+              private userService:UserService
   ) { 
      this.incidents$ = this.incidentService.incidents$ 
   }
@@ -49,14 +49,14 @@ export class ListIncidentsComponent implements OnInit {
   }
 
   public recupererUtilisateurNomById(idUtil: number){
-    const util = this.utilisateurService.getUtilisateurById(idUtil);
-    return  util === undefined ? 'Non Spécifié' : util.nom.toUpperCase() + ' '+ util.prenom;
+    const user = this.userService.getUtilisateurById(idUtil);
+    return  user === undefined ? 'Non Spécifié' : user.lastname.toUpperCase() + ' '+ user.name;
   }
   public supprimerIncident(id:number) {
-    this.incidentService.supprimerIncident(id);
+    this.incidentService.deleteIncident(id);
   }
 
-  public afficherIncident(arg0: any) {
+  public viewIncident(arg0: any) {
     throw new Error('Method not implemented.');
     }
   public editIncident(id: number) {

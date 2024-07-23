@@ -4,6 +4,5 @@ import { ManageIncidentsComponent } from './components/manage-incidents/manage-i
 
 export const routes: Routes = [
     {path: '', component: ListIncidentsComponent},
-    {path: 'incident/create',component: ManageIncidentsComponent},
     {path: 'incident/:id', component: ManageIncidentsComponent}
 ];

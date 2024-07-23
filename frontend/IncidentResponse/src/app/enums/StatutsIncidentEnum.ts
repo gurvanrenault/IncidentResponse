@@ -1,4 +1,4 @@
-export enum StatutIncidentEnum {
+export enum StatusIncidentEnum {
     TODO = "TO DO",
     IN_PROGRESS = "IN PROGRESS",
     DONE = "DONE",
