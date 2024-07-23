@@ -1,11 +1,11 @@
 
 <title mat-dialog-title> Créer un incident</title>
-<form [formGroup]="incidentForm" (ngSubmit)="soumettreCreation()" >
+<form [formGroup]="incidentForm" (ngSubmit)=" edit ? submitUpdate() : submitCreation()" >
     
     <mat-dialog-content>
         <mat-form-field  >
-            <mat-label>Titre </mat-label>
-            <input matInput class="form-control" formControlName="titre" />
+            <mat-label>Title </mat-label>
+            <input matInput class="form-control" formControlName="title" />
         </mat-form-field>
         <mat-form-field  >
             <mat-label>Description </mat-label>
@@ -13,26 +13,34 @@
             </textarea> 
         </mat-form-field>
         <mat-form-field>  
+            <mat-label>Priority</mat-label>
+            <mat-select matNativeControl class="form-select form-select-sm" formControlName="priority" >
+                <mat-option *ngFor="let pKey  of priorityKeys" [value]="+pKey[1] +1">
+                    {{pKey[0]}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field >
+        <mat-form-field *ngIf="edit===true">  
             <mat-label>Priorité</mat-label>
-            <mat-select matNativeControl class="form-select form-select-sm" formControlName="priorite" >
-                <mat-option *ngFor="let pKey  of prioriteKeys" [value]="+pKey[1] +1">
+            <mat-select matNativeControl class="form-select form-select-sm" formControlName="status" >
+                <mat-option *ngFor="let pKey  of statusKeys" [value]="pKey[1]">
                     {{pKey[0]}}
                 </mat-option>
             </mat-select>
         </mat-form-field >
         <mat-form-field>  
-            <mat-label>Utilisateur</mat-label>
-            <mat-select matNativeControl class="form-select form-select-sm" formControlName="utilisateur" >
-                <mat-option *ngFor="let util  of utilisateurs" [value]="util.id">
-                    {{util.id}} {{util.prenom }} {{util.nom | uppercase}} <{{util.mail}}>
+            <mat-label>User Assignated</mat-label>
+            <mat-select matNativeControl class="form-select form-select-sm" formControlName="user" >
+                <mat-option *ngFor="let util  of users" [value]="util.id">
+                    {{util.name }} {{util.lastname | uppercase}} <{{util.mail}}>
                 </mat-option>
             </mat-select>
         </mat-form-field >
     </mat-dialog-content>
     <mat-dialog-actions>
             <button mat-raised-button class="btnsubmit" (click)="closeDialog()" >Retour à la liste des incidents</button>
-            <button mat-flat-button class="btnsubmit" type="submit" >Créer un incident</button>
-        
+            <button *ngIf="!edit"  mat-flat-button class="btnsubmit" type="submit" >Créer un incident</button>
+            <button *ngIf="edit"  mat-flat-button class="btnsubmit" type="submit" >Modifier un incident</button>
     </mat-dialog-actions>
 </form>
     

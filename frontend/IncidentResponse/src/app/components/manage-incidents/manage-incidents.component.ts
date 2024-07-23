@@ -1,7 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import { Incident } from '../../models/Incident';
-import { PrioriteEnum } from '../../enums/PrioriteEnum';
+import { PriorityEnum } from '../../enums/PriorityEnum';
 import { CommonModule } from '@angular/common';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
@@ -9,11 +9,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
-import { Utilisateur } from '../../models/Utilisateur';
+import { User } from '../../models/User';
 import { IncidentService } from '../../services/incidentService/incident.service';
-import { UtilisateurService } from '../../services/utilisateurService/utilisateur.service';
-import { MAT_DIALOG_DATA, MatDialogModule,MatDialogRef} from '@angular/material/dialog';
-import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
+import { UserService } from '../../services/userService/user.service';
+import { StatusIncidentEnum } from '../../enums/StatutsIncidentEnum';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { MatDialogModule,MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-manage-incidents',
@@ -37,33 +38,64 @@ import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-br
 
 export class ManageIncidentsComponent implements OnInit {
 
+  @Input() edit: boolean = false;
+  @Input() idEdit: number = -1;
+
+
   incidentForm:FormGroup  = new FormGroup(
     {
-      titre : new FormControl<string>('', Validators.required),
+      title : new FormControl<string>('', Validators.required),
       description: new FormControl<string>('', Validators.required),
-      priorite : new FormControl<PrioriteEnum>(1,Validators.required),
-      utilisateur : new FormControl<number>(-1)
+      priority : new FormControl<PriorityEnum>(1,Validators.required),
+      user : new FormControl<number>(-1)
     }
   );
   
-  utilisateurs :Array<Utilisateur> ;
-  prioriteKeys = Object.entries(PrioriteEnum).slice(Object.entries(PrioriteEnum).length/2,Object.entries(PrioriteEnum).length);
+  users :Array<User> ;
+  priorityKeys = Object.entries(PriorityEnum).slice(Object.entries(PriorityEnum).length/2,Object.entries(PriorityEnum).length);
+  statusKeys = Object.entries(StatusIncidentEnum).slice(Object.entries(StatusIncidentEnum).length/2 -1,Object.entries(StatusIncidentEnum).length);
+  
 
   constructor(private incidentService:IncidentService,
-              private utilisateurService:UtilisateurService,
+              private userService:UserService,
               public dialogRef: MatDialogRef<ManageIncidentsComponent>
   ){
-    this.utilisateurs = this.utilisateurService.getUtilisateurs();
+    this.users = this.userService.getUtilisateurs();
   }
   
   ngOnInit(){
-  
+    if (this.edit && this.idEdit != -1){
+      const incident = this.incidentService.getIncidentById(this.idEdit)
+      if (incident != undefined){
+        this.incidentForm = new FormGroup(
+          {
+            title : new FormControl<string>(incident.title, Validators.required),
+            description: new FormControl<string>(incident.description, Validators.required),
+            priority : new FormControl<PriorityEnum>(incident.priority,Validators.required),
+            status: new FormControl<StatusIncidentEnum> (incident.status,Validators.required),
+            date: new FormControl<Date>(incident.date,Validators.required),
+            user : new FormControl<number>(incident.user ?? -1)
+            
+          }
+        );
+
+        }
+    }  
   }
   
-  public soumettreCreation():void {
+  public submitCreation():void {
     if (this.incidentForm.valid ){
       const incident = this.incidentForm.value as Incident
       this.incidentService.addIncident(incident)
+      this.closeDialog()
+    }
+    
+  }
+  public submitUpdate():void {
+    if (this.incidentForm.valid ){
+      const incident = this.incidentForm.value as Incident
+      incident.id = this.idEdit;
+      this.incidentService.updateIncident(incident)
       this.closeDialog()
     }
     

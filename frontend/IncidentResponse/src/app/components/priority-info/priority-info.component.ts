@@ -2,13 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-priorite-info',
+  selector: 'app-priority-info',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './priorite-info.component.html',
-  styleUrl: './priorite-info.component.scss'
+  templateUrl: './priority-info.component.html',
+  styleUrl: './priority-info.component.scss'
 })
-export class PrioriteInfoComponent {
+export class PriorityInfoComponent {
   
   @Input() value = 0;
 }

@@ -1,6 +1,6 @@
 import { LowerCasePipe } from "@angular/common"
 
-export enum PrioriteEnum {
+export enum PriorityEnum {
     P1,
     P2,
     P3,
