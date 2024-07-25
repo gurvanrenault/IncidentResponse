@@ -7,12 +7,12 @@ import { PriorityInfoComponent } from "../priority-info/priority-info.component"
 import {MatCardModule} from '@angular/material/card';
 import { StatusIncidentInfoComponent } from "../status-incident-info/status-incident-info.component";
 import { MatIconModule } from '@angular/material/icon';
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-view-incident',
   standalone: true,
-  imports: [RouterModule, MatCardModule,MatButtonModule, MatIconModule, PriorityInfoComponent, StatusIncidentInfoComponent],
+  imports: [CommonModule,RouterModule, MatCardModule,MatButtonModule, MatIconModule, PriorityInfoComponent, StatusIncidentInfoComponent],
   templateUrl: './view-incident.component.html',
   styleUrl: './view-incident.component.scss'
 })
@@ -20,20 +20,20 @@ export class ViewIncidentComponent implements OnInit {
 
   
   private _idIncident:number;
-  public  incident: Incident|undefined = undefined;
+  public incident: Incident | null = null;
   
   constructor(private router: ActivatedRoute,
               private location: Location,
               private incidentService: IncidentService,
               private userService: UserService
   ) {
-    const routeParams = this.router.snapshot.paramMap;
-    this._idIncident= Number(routeParams.get('id'));
+    const routeParams = this.router.snapshot.params;
+    console.log(routeParams)
+    this._idIncident= Number(routeParams['id']);
     
   }
   ngOnInit(): void {
     const incident = this.incidentService.getIncidentById(this._idIncident)
-    console.log(incident)
     if (incident != undefined){
       this.incident = incident
     }
