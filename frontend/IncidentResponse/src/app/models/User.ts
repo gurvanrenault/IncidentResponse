@@ -3,5 +3,5 @@ export class User{
     mail !: string;
     lastname !: string;
     name !: string;
-    entreprise !:string
+    company !:string
 }

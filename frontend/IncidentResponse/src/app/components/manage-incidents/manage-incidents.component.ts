@@ -60,7 +60,7 @@ export class ManageIncidentsComponent implements OnInit {
               private userService:UserService,
               public dialogRef: MatDialogRef<ManageIncidentsComponent>
   ){
-    this.users = this.userService.getUtilisateurs();
+    this.users = this.userService.getUsers();
   }
   
   ngOnInit(){

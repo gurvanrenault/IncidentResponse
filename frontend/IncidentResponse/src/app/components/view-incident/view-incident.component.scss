@@ -1,0 +1,22 @@
+  
+.status_container{  
+  width:35% ;
+  display: inline-block;
+  vertical-align: top;
+  padding: 20px;
+  height: 100%;
+}
+.infos_container{
+  width: 59%;
+  display: inline-block;
+  vertical-align: top;
+  padding: 20px;
+  height: 100%;
+}
+.status{
+    margin-top: 20px;
+}
+#back_icon{
+    margin-left: 20px;
+    transform: scale(1.5);
+}
