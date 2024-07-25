@@ -7,18 +7,16 @@ import { User } from '../../models/User';
 export class UserService {
   
   
- 
-  
-  private utilisateurs : Array<User>= [
-    {id:0, mail: "test@gmail;com", lastname: "Telsa",name: "Nicolas",entreprise:"Tesla"},
-    {id:1, mail: "test@gmail;com", lastname: "Edison",name: "Mark",entreprise:"Tesla"}
+  private users : Array<User>= [
+    {id:0, mail: "test@gmail;com", lastname: "Telsa",name: "Nicolas",company:"Tesla"},
+    {id:1, mail: "test@gmail;com", lastname: "Edison",name: "Mark",company:"Tesla"}
   ];
   constructor() { }
 
-  public getUtilisateurs(){
-    return this.utilisateurs
+  public getUsers(){
+    return this.users
   }
-  public getUtilisateurById(id:number) {
-    return this.utilisateurs.find( (util) => util.id === id);
+  public getUserById(id:number) {
+    return this.users.find( (user) => user.id === id);
   }
 }

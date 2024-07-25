@@ -12,9 +12,9 @@ import { IncidentService } from '../../services/incidentService/incident.service
 import { Observable } from 'rxjs';
 import { CommonModule, DatePipe } from '@angular/common';
 import { PriorityInfoComponent } from "../priority-info/priority-info.component";
-import { User } from '../../models/User';
 import { UserService } from '../../services/userService/user.service';
 import { StatusIncidentInfoComponent } from "../status-incident-info/status-incident-info.component";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-incidents',
@@ -33,14 +33,15 @@ export class ListIncidentsComponent implements OnInit {
   displayColumns = ['id','title','user','priority','status','actions']
   constructor(public dialog: MatDialog,
               private incidentService:IncidentService,
-              private userService:UserService
+              private userService:UserService,
+              private router:Router
   ) { 
      this.incidents$ = this.incidentService.incidents$ 
   }
   
   ngOnInit(): void {}
 
-  public ouvrirPopUpCreationIncident(){
+  public openPopUpCreationIncident(){
       this.dialogCreationIncident = this.dialog.open(ManageIncidentsComponent,{
         height: '500px',
         width: '1000px',
@@ -48,22 +49,22 @@ export class ListIncidentsComponent implements OnInit {
     this.dialogCreationIncident.componentInstance.edit = false;
   }
 
-  public recupererUtilisateurNomById(idUtil: number){
-    const user = this.userService.getUtilisateurById(idUtil);
+  public getUserNameById(idUtil: number){
+    const user = this.userService.getUserById(idUtil);
     return  user === undefined ? 'Non Spécifié' : user.lastname.toUpperCase() + ' '+ user.name;
   }
-  public supprimerIncident(id:number) {
+  public deleteIncident(id:number) {
     this.incidentService.deleteIncident(id);
   }
 
-  public viewIncident(arg0: any) {
-    throw new Error('Method not implemented.');
+  public viewIncident(id: number) {
+    this.router.navigate(['/incident', id])
     }
   public editIncident(id: number) {
     this.dialogCreationIncident = this.dialog.open(ManageIncidentsComponent,{
       height: '500px',
       width: '1000px',
-  })
+    })
     this.dialogCreationIncident.componentInstance.edit = true;
     this.dialogCreationIncident.componentInstance.idEdit = id;
     }

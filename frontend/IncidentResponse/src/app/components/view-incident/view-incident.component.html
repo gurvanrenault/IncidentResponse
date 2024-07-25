@@ -1,0 +1,33 @@
+<div>
+<button mat-icon-button
+            (click)="back()">
+                <mat-icon id="back_icon" class="icon">arrow_back</mat-icon>
+            </button>
+</div>
+<div id="container_incident"> 
+    <div class="infos_container">
+
+    <mat-card appearance="outlined" class="card" id="description_card">
+        <mat-card-content>
+                <h3>{{incident!.title}}</h3>
+                <h4>Description</h4>
+                <p>{{incident!.description}}</p>
+        </mat-card-content>
+    </mat-card>
+    </div>
+    <div class="status_container">
+        <mat-card appearance="outlined">
+            <mat-card-content>
+                <div class="status">
+                <span>Priority: </span><app-priority-info [value]="incident!.priority"></app-priority-info>
+                </div>
+                <div class="status">
+                    <span>Status: </span><app-status-incident-info [value]="incident!.status"></app-status-incident-info> 
+                </div>
+                <div class="status">
+                    <span>Assignated User:</span> <span> {{ getUserNameById(incident!.user)}} </span>
+                </div>  
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
