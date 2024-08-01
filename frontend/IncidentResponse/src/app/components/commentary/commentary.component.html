@@ -1,0 +1,11 @@
+<mat-card  class="commentary_container">
+            <mat-card-content>
+                <div>
+                    <span><a>{{ getUserNameById(commentary.user)}} </a></span>
+                </div>
+                <p>{{commentary.description}}</p>
+                <div>
+                    <span><i>{{ commentary.date | date:'medium'  }} </i></span>
+                </div>
+            </mat-card-content>
+        </mat-card>

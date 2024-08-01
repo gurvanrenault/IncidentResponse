@@ -9,6 +9,6 @@ export class Incident {
     priority !: PriorityEnum;
     status !: StatusIncidentEnum;
     user ?: number ;
-    commentary ?:Commentary[]; 
+    commentaries ?:Commentary[]; 
     date !: Date
 }
