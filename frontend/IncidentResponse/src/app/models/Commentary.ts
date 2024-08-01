@@ -1,11 +1,11 @@
-import { User } from "./User";
+
 
 
 export class Commentary {
     id!: number;
-    user !: User;
+    user !: number;
     description!: string;  
     date !: Date
-
+        
 
 }

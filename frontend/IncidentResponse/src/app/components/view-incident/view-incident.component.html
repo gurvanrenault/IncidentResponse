@@ -1,5 +1,5 @@
 <div>
-<button mat-icon-button
+<button mat-icon-button id="back_icon_button"
             (click)="back()">
                 <mat-icon id="back_icon" class="icon">arrow_back</mat-icon>
             </button>
@@ -12,8 +12,20 @@
                 <h3>{{incident.title}}</h3>
                 <h4>Description</h4>
                 <p>{{incident.description}}</p>
-        </mat-card-content>
-    </mat-card>
+       
+    <div id="container_commentaries" *ngIf="incident != null ">
+        <h4>Commentaries</h4>
+        <app-commentary *ngFor="let commentary of incident?.commentaries" [commentary]="commentary">
+        </app-commentary>
+        <mat-card class="commentary_container">
+            <mat-card-content>
+                <app-manage-commentaries [edit]="false" [idIncident]="idIncident" ></app-manage-commentaries>
+            </mat-card-content>
+        </mat-card>
+    
+    </div>
+</mat-card-content>
+</mat-card>
     </div>
     <div class="status_container">
         <mat-card appearance="outlined">
@@ -25,9 +37,10 @@
                     <span>Status: </span><app-status-incident-info [value]="incident.status"></app-status-incident-info> 
                 </div>
                 <div class="status">
-                    <span>Assignated User:</span> <span> {{ getUserNameById(incident.user)}} </span>
+                    <span>Assignated to :</span> <span> {{ getUserNameById(incident.user)}} </span>
                 </div>  
             </mat-card-content>
         </mat-card>
     </div>
+    
 </div>

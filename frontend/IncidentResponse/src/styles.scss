@@ -6,33 +6,27 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-form-field{
     background-color: rgb(213, 213, 213) !important;
   }
-  h1{
+h1{
     text-align: center;
   }
-  form{
-    display: flex;
-    flex-direction: column !important;
-    width: 70%;
-    margin: auto;
+// ICON 
+.icon{
+   color: darkgrey;
   }
-  .btnsubmit{
-    display: inline;
-    width: 30vh;
-    height: 7vh;
-    margin-left: 1vh;
-  }
-  .icon{
-    color: darkgrey;
-  }
-  .icon:hover{
-    color: black;
-  }
-  .delete-icon:hover{
-    color: red;
-  }
-  tr:hover{
-    background-color: aliceblue;
-  }
+.icon:hover{
+   color: black;
+}
+.delete-icon:hover{
+  color: red;
+}
+  
+  //TABLE
+tr:hover{
+  background-color: aliceblue;
+}
+
+// BADGE 
+
 .badge{
   padding: 4px 8px;
   text-align: center;
@@ -54,4 +48,25 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .badge-sucess{
   background: green;
   color: whitesmoke;
+}
+// FORMULAR 
+
+form{
+  width: 90%;
+  margin: auto;
+  align-items: center;
+}
+mat-form-field{
+  width: 100%;
+  margin: auto;
+}
+textarea{
+  width: 80%;
+  margin: auto;
+}
+.btnsubmit{
+  display: inline;
+  width: 40%;
+  height: 5vh;
+  margin-left: 1vh;
 }
