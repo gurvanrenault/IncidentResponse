@@ -13,14 +13,12 @@ import { User } from '../../models/User';
 import { IncidentService } from '../../services/incidentService/incident.service';
 import { UserService } from '../../services/userService/user.service';
 import { StatusIncidentEnum } from '../../enums/StatutsIncidentEnum';
-import { provideAnimations } from '@angular/platform-browser/animations';
 import { MatDialogModule,MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-manage-incidents',
   standalone: true,
   animations:[],
-  providers: [provideAnimations()],
   imports: [CommonModule,
     MatDialogModule,
     MatFormFieldModule,

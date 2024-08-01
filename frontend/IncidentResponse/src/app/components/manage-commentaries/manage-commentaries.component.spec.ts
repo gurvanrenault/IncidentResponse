@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ManageCommentariesComponent } from './manage-commentaries.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('ManageCommentariesComponent', () => {
   let component: ManageCommentariesComponent;
@@ -8,7 +9,7 @@ describe('ManageCommentariesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ManageCommentariesComponent]
+      imports: [ManageCommentariesComponent, BrowserAnimationsModule]
     })
     .compileComponents();
 

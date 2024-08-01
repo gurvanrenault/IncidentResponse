@@ -9,6 +9,7 @@ import { Commentary } from '../../models/Commentary';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCard, MatCardModule } from '@angular/material/card';
 import { CommentaryService } from '../../services/CommentaryService/commentary.service';
+import { provideAnimations } from '@angular/platform-browser/animations';
       
 
     

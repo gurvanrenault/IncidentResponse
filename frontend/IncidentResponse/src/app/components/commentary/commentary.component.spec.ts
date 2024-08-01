@@ -14,6 +14,8 @@ describe('CommentaryComponent', () => {
 
     fixture = TestBed.createComponent(CommentaryComponent);
     component = fixture.componentInstance;
+    component.commentary= {id:42,date : new Date(), user:1,description:'TEST'}
+    
     fixture.detectChanges();
   });
 

@@ -6,7 +6,8 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { IncidentService } from './services/incidentService/incident.service';
 import { UserService } from './services/userService/user.service';
+import { CommentaryService } from './services/CommentaryService/commentary.service';
 
 export const appConfig: ApplicationConfig = {
-  providers: [IncidentService,UserService,provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(), provideAnimationsAsync(),provideAnimationsAsync()]
+  providers: [IncidentService,UserService,CommentaryService,provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(), provideAnimationsAsync(),provideAnimationsAsync()]
 };
