@@ -1,0 +1,11 @@
+
+<form [formGroup]="commentaryForm" (ngSubmit)=" edit ? submitUpdate() : submitCreation()" >
+        <mat-form-field >
+            <mat-label>Description </mat-label>
+            <textarea  matInput class="form-control" formControlName="description">
+            </textarea> 
+        </mat-form-field>
+        <button mat-raised-button class="btnsubmit" (click)="closeDialog()" >Cancel </button>
+        <button *ngIf="!edit"  mat-flat-button class="btnsubmit" type="submit" >Create commentary</button>
+        <button *ngIf="edit"  mat-flat-button class="btnsubmit" type="submit" >Update commantary</button>''
+</form>
