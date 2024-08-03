@@ -19,9 +19,15 @@ jobs:
       with:
         java-version: '21'
         distribution: 'temurin'
-        cache: maven
+    - name: Cache Maven packages
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/backend/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2
     - name: Build with Maven
       run: |
+            ls -al
             cd backend
             mvn -B package --file pom.xml
   test:
@@ -33,7 +39,7 @@ jobs:
       with:
         java-version: '21'
         distribution: 'temurin'
-        cache: maven
+
     - name: Cache Maven packages
       uses: actions/cache@v2
       with:
@@ -41,11 +47,12 @@ jobs:
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
     - name: Build with Maven
+      working-directory: backend
       run:  | 
-             cd backend 
              mvn -B package --file pom.xml
 
     - name: Run tests with Maven
+      working-directory: ./backend
       run: | 
             cd backend
              mvn -B test --file UserClass/users/pom.xml 
