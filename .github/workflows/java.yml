@@ -54,5 +54,5 @@ jobs:
     - name: Run tests with Maven
       working-directory: backend
       run: | 
-             mvn -B test --file UserClass/users/pom.xml 
+             mvn -B test --file pom.xml 
     
