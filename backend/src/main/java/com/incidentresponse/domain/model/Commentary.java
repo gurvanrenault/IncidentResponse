@@ -1,16 +1,15 @@
-package com.incidentresponse.application.dto;
+package com.incidentresponse.domain.model;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class CommentaryDTO {
+public class Commentary {
 
     private int id;
     private String description;
     private int user;
-
 
 
 }
