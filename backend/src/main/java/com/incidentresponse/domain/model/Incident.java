@@ -18,7 +18,7 @@ public class Incident {
 
     private Long id;
     private String title;
-    private User user_assignated;
+    private User userAssignated;
     private String description;
     private PriorityStatusEnum priority;
     private StatusIncidentEnum status;

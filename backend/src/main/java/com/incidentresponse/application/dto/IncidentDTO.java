@@ -17,7 +17,7 @@ public class IncidentDTO {
 
     private Long id;
     private String title;
-    private UserDTO user_assignated;
+    private UserDTO userAssignated;
     private String description;
     private PriorityStatusEnum priority;
     private StatusIncidentEnum status;
