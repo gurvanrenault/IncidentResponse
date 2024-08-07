@@ -95,6 +95,5 @@ public class TestIncidentDTOMapper {
         incident.setCommentaries(new ArrayList<>());
         incident.setUserAssignated(new User());
         return incident;
-
     }
 }

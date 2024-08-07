@@ -9,13 +9,14 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.Optional;
 
 @Service
 public class IncidentService implements IIncidentService {
 
 
-    private IIncidentRepository incidentRepository;
-    private IncidentEntityMapper incidentEntityMapper;
+    private final IIncidentRepository incidentRepository;
+    private final IncidentEntityMapper incidentEntityMapper;
 
     public IncidentService(IIncidentRepository incidentRepository, IncidentEntityMapper incidentEntityMapper) {
         this.incidentRepository = incidentRepository;
@@ -28,5 +29,11 @@ public class IncidentService implements IIncidentService {
         incident.setDate(Timestamp.from(Instant.now()));
         IncidentEntity incidentEntity = incidentRepository.save(incidentEntityMapper.domainToEntity(incident));
         return this.incidentEntityMapper.entityToDomain(incidentEntity);
+    }
+
+    @Override
+    public Incident getIncident(Long id) {
+        Optional<IncidentEntity> optionalIncidentEntity = incidentRepository.findById(id);
+        return optionalIncidentEntity.map(this.incidentEntityMapper::entityToDomain).orElse(null);
     }
 }
