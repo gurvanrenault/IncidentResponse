@@ -9,10 +9,7 @@ import com.incidentresponse.enums.ErrorsEnum;
 import com.incidentresponse.errors.IncidentResponseError;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
@@ -37,5 +34,14 @@ public class IncidentController {
         }
     }
 
+    @GetMapping(path = "incidents/{id}")
+    public ResponseEntity<?> getIncident(@PathVariable("id") Long id) {
+        Incident incident = this.incidentService.getIncident(id);
+        if (incident != null) {
+            return ResponseEntity.ok(this.incidentDTOMapper.domainToApplication(incident));
+        } else {
+            return new ResponseEntity<>(new IncidentResponseError(ErrorsEnum.ERROR_NOT_FOUND_INCIDENT.getCode(), ErrorsEnum.ERROR_NOT_FOUND_INCIDENT.getMessage()), HttpStatus.NOT_FOUND);
+        }
+    }
 
 }
