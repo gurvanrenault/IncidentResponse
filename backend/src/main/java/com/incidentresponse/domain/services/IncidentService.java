@@ -36,4 +36,14 @@ public class IncidentService implements IIncidentService {
         Optional<IncidentEntity> optionalIncidentEntity = incidentRepository.findById(id);
         return optionalIncidentEntity.map(this.incidentEntityMapper::entityToDomain).orElse(null);
     }
+
+    @Override
+    public boolean deleteIncident(Long id) {
+        Incident incident = this.getIncident(id);
+        if (incident != null) {
+            this.incidentRepository.delete(this.incidentEntityMapper.domainToEntity(incident));
+            return true;
+        }
+        return false;
+    }
 }

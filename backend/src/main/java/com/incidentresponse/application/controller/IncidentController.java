@@ -44,4 +44,14 @@ public class IncidentController {
         }
     }
 
+    @DeleteMapping(path = "incidents/{id}")
+    public ResponseEntity<?> deleteIncident(@PathVariable("id") Long id) {
+        boolean isDeleted = this.incidentService.deleteIncident(id);
+        if (isDeleted) {
+            return ResponseEntity.ok(true);
+        } else {
+            return new ResponseEntity<>(new IncidentResponseError(ErrorsEnum.ERROR_NOT_FOUND_INCIDENT.getCode(), ErrorsEnum.ERROR_NOT_FOUND_INCIDENT.getMessage()), HttpStatus.NOT_FOUND);
+        }
+    }
+
 }
