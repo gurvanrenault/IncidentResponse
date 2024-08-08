@@ -10,6 +10,7 @@ import com.incidentresponse.infrastructure.entity.IncidentEntity;
 import com.incidentresponse.infrastructure.mapper.IncidentEntityMapper;
 import com.incidentresponse.infrastructure.repository.interfaces.IIncidentRepository;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -61,6 +62,16 @@ public class TestIncidentService {
     @Test
     public void testGetIncidentNotExist() {
         assertNull(this.incidentService.getIncident(ID_NOT_EXIST));
+    }
+
+    @Test
+    public void testDeleteIncidentExist() {
+        Assertions.assertTrue(this.incidentService.deleteIncident(ID_EXIST));
+    }
+
+    @Test
+    public void testDeleteIncidentNotExist() {
+        Assertions.assertFalse(this.incidentService.deleteIncident(ID_NOT_EXIST));
     }
 
     /**

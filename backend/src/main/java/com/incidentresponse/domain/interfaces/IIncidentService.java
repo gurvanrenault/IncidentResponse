@@ -7,4 +7,6 @@ public interface IIncidentService {
     Incident addIncident(Incident incident);
 
     Incident getIncident(Long id);
+
+    boolean deleteIncident(Long id);
 }
