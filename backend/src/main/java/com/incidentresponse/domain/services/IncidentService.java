@@ -5,10 +5,14 @@ import com.incidentresponse.domain.model.Incident;
 import com.incidentresponse.infrastructure.entity.IncidentEntity;
 import com.incidentresponse.infrastructure.mapper.IncidentEntityMapper;
 import com.incidentresponse.infrastructure.repository.interfaces.IIncidentRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,6 +21,7 @@ public class IncidentService implements IIncidentService {
 
     private final IIncidentRepository incidentRepository;
     private final IncidentEntityMapper incidentEntityMapper;
+    private final int SIZE_PAGE = 10;
 
     public IncidentService(IIncidentRepository incidentRepository, IncidentEntityMapper incidentEntityMapper) {
         this.incidentRepository = incidentRepository;
@@ -45,5 +50,16 @@ public class IncidentService implements IIncidentService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<Incident> getAllIncidents(int page) {
+        if (page < 0) {
+            return new ArrayList<>();
+        }
+        PageRequest pageRequest = PageRequest.of(page, SIZE_PAGE);
+        Page<IncidentEntity> incidentsPage = this.incidentRepository.findAll(pageRequest);
+
+        return this.incidentEntityMapper.listEntityToDomain(incidentsPage.getContent());
     }
 }

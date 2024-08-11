@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class IncidentController {
@@ -34,11 +36,22 @@ public class IncidentController {
         }
     }
 
+
     @GetMapping(path = "incidents/{id}")
     public ResponseEntity<?> getIncident(@PathVariable("id") Long id) {
         Incident incident = this.incidentService.getIncident(id);
         if (incident != null) {
             return ResponseEntity.ok(this.incidentDTOMapper.domainToApplication(incident));
+        } else {
+            return new ResponseEntity<>(new IncidentResponseError(ErrorsEnum.ERROR_NOT_FOUND_INCIDENT.getCode(), ErrorsEnum.ERROR_NOT_FOUND_INCIDENT.getMessage()), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping(path = "incidents")
+    public ResponseEntity<?> getAllIncidents(@RequestParam("page") int page) {
+        List<Incident> incidents = this.incidentService.getAllIncidents(page);
+        if (incidents != null) {
+            return ResponseEntity.ok(this.incidentDTOMapper.listDomainToApplication(incidents));
         } else {
             return new ResponseEntity<>(new IncidentResponseError(ErrorsEnum.ERROR_NOT_FOUND_INCIDENT.getCode(), ErrorsEnum.ERROR_NOT_FOUND_INCIDENT.getMessage()), HttpStatus.NOT_FOUND);
         }
