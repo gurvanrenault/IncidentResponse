@@ -14,7 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -44,6 +46,7 @@ public class TestIncidentDTOMapper {
 
     }
 
+
     @Test
     public void testDomainToApplication() {
         Incident incident = this.generateIncident();
@@ -56,6 +59,23 @@ public class TestIncidentDTOMapper {
         assertNotNull(incidentDTO.getDate());
         assertNotNull(incidentDTO.getCommentaries());
         assertNotNull(incidentDTO.getUserAssignated());
+
+    }
+
+    @Test
+    public void testListDomainToApplication() {
+        Incident[] incidentsArray = new Incident[]{this.generateIncident()};
+        List<Incident> incidents = Arrays.asList(incidentsArray);
+        List<IncidentDTO> incidentsDTO = this.incidentDTOMapper.listDomainToApplication(incidents);
+        assertEquals(1, incidentsDTO.size());
+        assertEquals(42L, incidentsDTO.getFirst().getId());
+        assertNotNull(incidentsDTO.getFirst().getDescription());
+        assertEquals(PriorityStatusEnum.P1, incidentsDTO.getFirst().getPriority());
+        assertEquals(StatusIncidentEnum.TO_DO, incidentsDTO.getFirst().getStatus());
+        assertNotNull(incidentsDTO.getFirst().getTitle());
+        assertNotNull(incidentsDTO.getFirst().getDate());
+        assertNotNull(incidentsDTO.getFirst().getCommentaries());
+        assertNotNull(incidentsDTO.getFirst().getUserAssignated());
 
     }
 
