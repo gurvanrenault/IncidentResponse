@@ -39,15 +39,17 @@ public class TestIncidentService {
             {this.generateIncidentEntity()};
     private final Incident[] ARRAY_INCIDENT = new Incident[]
             {this.generateIncident()};
+
     private final int SIZE_PAGE = 10;
     private final int PAGE_NUMBER_NOT_EMPTY = 0;
     private final int PAGE_NUMBER_EMPTY = 1;
-    private final int PAGE_NUMBER_ERROR = -1;
+
     private final Pageable PAGE_REQUEST_NOT_EMPTY = PageRequest.of(PAGE_NUMBER_NOT_EMPTY, SIZE_PAGE);
     private final Pageable PAGE_REQUEST_EMPTY = PageRequest.of(PAGE_NUMBER_EMPTY, SIZE_PAGE);
-    private List<IncidentEntity> EMPTY_LIST_ENTITY = new ArrayList<>();
+
+    private final List<IncidentEntity> EMPTY_LIST_ENTITY = new ArrayList<>();
     private final Page<IncidentEntity> EMPTY_PAGE = new PageImpl<>(EMPTY_LIST_ENTITY);
-    private List<IncidentEntity> LIST_ENTITY = Arrays.stream(ARRAY_INCIDENT_ENTITY).toList();
+    private final List<IncidentEntity> LIST_ENTITY = Arrays.stream(ARRAY_INCIDENT_ENTITY).toList();
     private final Page<IncidentEntity> NOT_EMPTY_PAGE = new PageImpl<>(LIST_ENTITY);
 
 
@@ -60,6 +62,8 @@ public class TestIncidentService {
 
     @BeforeEach
     public void beforeEach() {
+
+
         when(incidentRepository.save(any())).thenReturn(new IncidentEntity());
         when(incidentRepository.findById(ID_NOT_EXIST)).thenReturn(Optional.empty());
         when(incidentRepository.findById(ID_EXIST)).thenReturn(Optional.of(new IncidentEntity()));
@@ -110,6 +114,7 @@ public class TestIncidentService {
 
     @Test
     public void testErrorPageGetIncidents() {
+        final int PAGE_NUMBER_ERROR = -1;
         List<Incident> incidentList = this.incidentService.getAllIncidents(PAGE_NUMBER_ERROR);
         assertEquals(0, incidentList.size());
     }
