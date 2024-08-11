@@ -25,7 +25,7 @@ public class IncidentEntity {
 
     @OneToOne
     @JoinColumn(name = "user_assignated")
-    private UserEntity user_assignated;
+    private UserEntity userAssignated;
 
     @Column(name = "description")
     private String description;

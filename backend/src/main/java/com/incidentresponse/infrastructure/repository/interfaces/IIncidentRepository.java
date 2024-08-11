@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IIncidentRepository extends JpaRepository<IncidentEntity, Long> {
+
 }
