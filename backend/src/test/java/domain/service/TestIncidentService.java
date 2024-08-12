@@ -119,6 +119,22 @@ public class TestIncidentService {
         assertEquals(0, incidentList.size());
     }
 
+    @Test
+    public void testUpdateIncidentExist() {
+        Incident incident = generateIncident();
+        incident.setId(ID_EXIST);
+        assertNotNull(this.incidentService.updateIncident(incident));
+
+    }
+
+    @Test
+    public void testUpdateIncidentNotExist() {
+        Incident incident = generateIncident();
+        incident.setId(ID_NOT_EXIST);
+        assertNull(this.incidentService.updateIncident(incident));
+
+    }
+
 
     /**
      * Generate an incident
