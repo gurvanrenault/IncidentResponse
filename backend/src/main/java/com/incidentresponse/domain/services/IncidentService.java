@@ -53,6 +53,18 @@ public class IncidentService implements IIncidentService {
     }
 
     @Override
+    public Incident updateIncident(Incident incident) {
+
+        Incident incidentRetrieved = this.getIncident(incident.getId());
+        if (incidentRetrieved != null) {
+            incident.setDate(incidentRetrieved.getDate());
+            IncidentEntity iEntity = this.incidentRepository.save(this.incidentEntityMapper.domainToEntity(incident));
+            return this.incidentEntityMapper.entityToDomain(iEntity);
+        }
+        return null;
+    }
+
+    @Override
     public List<Incident> getAllIncidents(int page) {
         if (page < 0) {
             return new ArrayList<>();

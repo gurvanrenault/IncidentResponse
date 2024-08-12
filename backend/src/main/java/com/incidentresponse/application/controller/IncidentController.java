@@ -57,6 +57,22 @@ public class IncidentController {
         }
     }
 
+    @PutMapping(path = "incidents")
+    public ResponseEntity<?> updateIncidents(@RequestBody IncidentDTO incidentDTO) {
+        IncidentValidator incidentValidator = new IncidentValidator();
+        if (incidentValidator.isValid(incidentDTO)) {
+            Incident incidentUpdated = this.incidentService.updateIncident(this.incidentDTOMapper.applicationToDomain(incidentDTO));
+            if (incidentUpdated != null) {
+                return ResponseEntity.ok(this.incidentDTOMapper.domainToApplication(incidentUpdated));
+            } else {
+                return new ResponseEntity<>(new IncidentResponseError(ErrorsEnum.ERROR_NOT_FOUND_INCIDENT.getCode(), ErrorsEnum.ERROR_NOT_FOUND_INCIDENT.getMessage()), HttpStatus.NOT_FOUND);
+            }
+
+        } else {
+            return new ResponseEntity<>(new IncidentResponseError(ErrorsEnum.ERROR_INVALID_INCIDENT.getCode(), ErrorsEnum.ERROR_INVALID_INCIDENT.getMessage()), HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @DeleteMapping(path = "incidents/{id}")
     public ResponseEntity<?> deleteIncident(@PathVariable("id") Long id) {
         boolean isDeleted = this.incidentService.deleteIncident(id);

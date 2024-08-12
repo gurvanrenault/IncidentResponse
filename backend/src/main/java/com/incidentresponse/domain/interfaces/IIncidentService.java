@@ -11,5 +11,7 @@ public interface IIncidentService {
 
     boolean deleteIncident(Long id);
 
+    Incident updateIncident(Incident incident);
+
     List<Incident> getAllIncidents(int page);
 }
