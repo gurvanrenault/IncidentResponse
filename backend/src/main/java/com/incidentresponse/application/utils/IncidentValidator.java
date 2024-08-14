@@ -10,14 +10,11 @@ public class IncidentValidator implements Validator<IncidentDTO> {
     @Override
     public boolean isValid(IncidentDTO obj) {
 
-        boolean isValid = obj.getStatus() != null;
+        boolean isValid = (obj.getStatus() != null) && (obj.getPriority() != null);
         if (StringUtils.isEmpty(obj.getTitle())) {
             isValid = false;
         }
         if (StringUtils.isEmpty(obj.getDescription())) {
-            isValid = false;
-        }
-        if (obj.getPriority() == null) {
             isValid = false;
         }
 

@@ -5,11 +5,12 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Commentary {
+public class Comment {
 
-    private int id;
+    private Long id;
     private String description;
-    private int user;
+    private User user;
+    private Incident incident;
 
 
 }

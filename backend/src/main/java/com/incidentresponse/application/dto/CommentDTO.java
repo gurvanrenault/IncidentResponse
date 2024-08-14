@@ -5,11 +5,13 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CommentaryDTO {
+public class CommentDTO {
 
-    private int id;
+    private Long id;
     private String description;
-    private int user;
+    private UserDTO user;
+    private IncidentDTO incident;
+
 
 
 

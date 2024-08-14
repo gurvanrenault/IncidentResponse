@@ -1,13 +1,11 @@
 package com.incidentresponse.domain.model;
 
-import com.incidentresponse.application.dto.CommentaryDTO;
 import com.incidentresponse.enums.PriorityStatusEnum;
 import com.incidentresponse.enums.StatusIncidentEnum;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 @NoArgsConstructor
@@ -22,6 +20,5 @@ public class Incident {
     private String description;
     private PriorityStatusEnum priority;
     private StatusIncidentEnum status;
-    private ArrayList<CommentaryDTO> commentaries;
     private Date date;
 }
