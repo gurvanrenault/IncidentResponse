@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 @NoArgsConstructor
@@ -21,6 +20,5 @@ public class IncidentDTO {
     private String description;
     private PriorityStatusEnum priority;
     private StatusIncidentEnum status;
-    private ArrayList<CommentaryDTO> commentaries;
     private Date date;
 }

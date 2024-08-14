@@ -25,7 +25,8 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -77,7 +78,7 @@ public class TestIncidentService {
     @Test
     public void testAddIncident() {
         Incident incident = generateIncident();
-        assertNotNull(this.incidentService.addIncident(incident));
+        Assertions.assertNotNull(this.incidentService.addIncident(incident));
     }
 
     @Test
@@ -103,20 +104,20 @@ public class TestIncidentService {
     @Test
     public void testEmptyPageGetIncidents() {
         List<Incident> incidentList = this.incidentService.getAllIncidents(PAGE_NUMBER_EMPTY);
-        assertEquals(0, incidentList.size());
+        Assertions.assertEquals(0, incidentList.size());
     }
 
     @Test
     public void testNotEmptyPageGetIncidents() {
         List<Incident> incidentList = this.incidentService.getAllIncidents(PAGE_NUMBER_NOT_EMPTY);
-        assertEquals(1, incidentList.size());
+        Assertions.assertEquals(1, incidentList.size());
     }
 
     @Test
     public void testErrorPageGetIncidents() {
         final int PAGE_NUMBER_ERROR = -1;
         List<Incident> incidentList = this.incidentService.getAllIncidents(PAGE_NUMBER_ERROR);
-        assertEquals(0, incidentList.size());
+        Assertions.assertEquals(0, incidentList.size());
     }
 
     @Test
@@ -149,7 +150,6 @@ public class TestIncidentService {
         incident.setStatus(StatusIncidentEnum.TO_DO);
         incident.setTitle(RandomStringUtils.randomAlphanumeric(17).toUpperCase());
         incident.setDate(new Date());
-        incident.setCommentaries(new ArrayList<>());
         incident.setUserAssignated(new User());
         return incident;
     }
