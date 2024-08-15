@@ -15,6 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class CommentController {
@@ -45,5 +47,16 @@ public class CommentController {
         if (incident == null)
             return new ResponseEntity<>(new IncidentResponseError(ErrorsEnum.ERROR_NOT_FOUND_INCIDENT.getCode(), ErrorsEnum.ERROR_NOT_FOUND_INCIDENT.getMessage()), HttpStatus.NOT_FOUND);
         return new ResponseEntity<>(new IncidentResponseError(ErrorsEnum.ERROR_INVALID_COMMENT.getCode(), ErrorsEnum.ERROR_INVALID_COMMENT.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping(path = "incidents/{id}/comments")
+    public ResponseEntity<?> getCommentsByIdIncident(@PathVariable("id") Long id) {
+        Incident incident = this.incidentService.getIncident(id);
+        if (incident != null) {
+            List<Comment> comments = this.commentService.getCommentsByIdIncident(id);
+            return ResponseEntity.ok(this.commentDTOMapper.listDomainToApplication(comments));
+        } else {
+            return new ResponseEntity<>(new IncidentResponseError(ErrorsEnum.ERROR_NOT_FOUND_INCIDENT.getCode(), ErrorsEnum.ERROR_NOT_FOUND_INCIDENT.getMessage()), HttpStatus.NOT_FOUND);
+        }
     }
 }
