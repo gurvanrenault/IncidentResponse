@@ -14,6 +14,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @SpringBootTest(classes = IncidentApplication.class)
 public class TestCommentEntityMapper {
     private final CommentEntityMapper commentEntityMapper;
@@ -41,6 +44,18 @@ public class TestCommentEntityMapper {
         Assertions.assertNotNull(commentEntity.getDescription());
         Assertions.assertNotNull(commentEntity.getIncident());
         Assertions.assertNotNull(commentEntity.getUser());
+    }
+
+    @Test
+    public void testListEntityToDomain() {
+        List<CommentEntity> commentEntityList = new ArrayList<>();
+        commentEntityList.add(generateCommentEntity());
+        List<Comment> coms = this.commentEntityMapper.listEntityToDomain(commentEntityList);
+        Assertions.assertEquals(1, coms.size());
+        Assertions.assertNotNull(coms.getFirst().getId());
+        Assertions.assertNotNull(coms.getFirst().getDescription());
+        Assertions.assertNotNull(coms.getFirst().getIncident());
+        Assertions.assertNotNull(coms.getFirst().getUser());
     }
 
 
