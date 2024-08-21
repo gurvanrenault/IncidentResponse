@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ViewIncidentComponent } from './view-incident.component';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Incident } from '../../models/Incident';
+import { Incident } from '../../shared/models/Incident';
 
 describe('ViewIncidentComponent', () => {
   let component: ViewIncidentComponent;

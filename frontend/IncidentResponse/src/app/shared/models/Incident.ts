@@ -1,5 +1,5 @@
-import { PriorityEnum } from "../enums/PriorityEnum";
-import { StatusIncidentEnum } from "../enums/StatutsIncidentEnum";
+import { PriorityEnum } from "../../enums/PriorityEnum";
+import { StatusIncidentEnum } from "../../enums/StatutsIncidentEnum";
 import { Commentary } from "./Commentary";
 
 export class Incident {

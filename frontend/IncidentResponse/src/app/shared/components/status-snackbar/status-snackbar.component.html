@@ -1,0 +1,5 @@
+<ng-container *ngIf='data?.type != undefined ' >
+    <span *ngIf='data.type == messageStatusEnum.VALIDATION' ><mat-icon>done</mat-icon> {{data.message}}</span>
+    <span *ngIf='data.type == messageStatusEnum.WARNING' ><mat-icon>warning</mat-icon>{{data.message}}</span>
+    <span *ngIf='data.type == messageStatusEnum.FAILURE' ><mat-icon>error</mat-icon> {{data.message}}</span>
+</ng-container>

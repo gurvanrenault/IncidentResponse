@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { StatusIncidentEnum } from '../../enums/StatutsIncidentEnum';
+
 import { CommonModule } from '@angular/common';
+import { StatusIncidentEnum } from '../../../enums/StatutsIncidentEnum';
 
 @Component({
   selector: 'app-status-incident-info',

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { Commentary } from '../../models/Commentary';
+import { Commentary } from '../../shared/models/Commentary';
 import { MatCardModule } from '@angular/material/card';
-import { UserService } from '../../services/userService/user.service';
+import { UserService } from '../../shared/services/userService/user.service';
 import { CommonModule, DatePipe } from '@angular/common';
 
 @Component({

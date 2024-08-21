@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Incident } from '../../models/Incident';
-import { BehaviorSubject } from 'rxjs';
-import { StatusIncidentEnum } from '../../enums/StatutsIncidentEnum';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { StatusIncidentEnum } from '../../../enums/StatutsIncidentEnum';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -13,17 +14,18 @@ export class IncidentService {
   public  incidents$ = this._incidentsSubject.asObservable() 
   private _currentid = 0;
 
-  constructor() {}
+  private urlIncident = "/api/incidents"
+  constructor(private http : HttpClient) {}
 
-  public addIncident(incident:Incident){
+  public addIncident(incident:Incident):Observable<Incident>{
     incident.id = this._currentid;
-    this._currentid=this._currentid+1;
-    incident.date = new Date();
-    incident.id= this._currentid;
     incident.status = StatusIncidentEnum.TODO;
-    let incidents = this._incidentsSubject.value;
-    incidents.push(incident);
-    this._incidentsSubject.next(incidents);
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        'access-control-allow-origin':'*'
+      })
+    };
+    return this.http.post<Incident>(this.urlIncident,incident,httpOptions)
   }
 
   public deleteIncident(idIncident:number){
@@ -45,4 +47,15 @@ export class IncidentService {
     return this._incidentsSubject.value.find((element) => element.id == idEdit )
   }
 
+
+  /*
+  public getAllIncidents():Observable<Object>{
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        'access-control-allow-origin':'*'
+      })
+    };
+    return this.http.get(this.urlIncident,httpOptions); 
+  }
+    */
 }

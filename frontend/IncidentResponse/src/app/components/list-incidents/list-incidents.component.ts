@@ -6,15 +6,15 @@ import {
 } from '@angular/material/dialog'
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatTableModule} from '@angular/material/table';
-import { Incident } from '../../models/Incident';
-import { IncidentService } from '../../services/incidentService/incident.service';
+import { MatTableDataSource, MatTableModule} from '@angular/material/table';
+import { Incident } from '../../shared/models/Incident';
+import { IncidentService } from '../../shared/services/incidentService/incident.service';
 import { Observable } from 'rxjs';
 import { CommonModule, DatePipe } from '@angular/common';
-import { PriorityInfoComponent } from "../priority-info/priority-info.component";
-import { UserService } from '../../services/userService/user.service';
-import { StatusIncidentInfoComponent } from "../status-incident-info/status-incident-info.component";
+import { PriorityInfoComponent } from "../../shared/components/priority-info/priority-info.component";
+import { UserService } from '../../shared/services/userService/user.service';
 import { Router } from '@angular/router';
+import { StatusIncidentInfoComponent } from '../../shared/components/status-incident-info/status-incident-info.component';
 
 @Component({
   selector: 'app-list-incidents',
@@ -29,6 +29,7 @@ export class ListIncidentsComponent implements OnInit {
 
 
   dialogCreationIncident: MatDialogRef<ManageIncidentsComponent> | undefined 
+  datasource = new MatTableDataSource()
   incidents$: Observable<Incident[]>;
   displayColumns = ['id','title','user','priority','status','actions']
   constructor(public dialog: MatDialog,

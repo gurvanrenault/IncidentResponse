@@ -4,10 +4,11 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { IncidentService } from './services/incidentService/incident.service';
-import { UserService } from './services/userService/user.service';
-import { CommentaryService } from './services/CommentaryService/commentary.service';
+import { IncidentService } from './shared/services/incidentService/incident.service';
+import { UserService } from './shared/services/userService/user.service';
+import { CommentaryService } from './shared/services/CommentaryService/commentary.service';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
-  providers: [IncidentService,UserService,CommentaryService,provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(), provideAnimationsAsync(),provideAnimationsAsync()]
+  providers: [IncidentService,UserService,CommentaryService,provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes),provideHttpClient(), provideClientHydration(), provideAnimationsAsync(),provideAnimationsAsync()]
 };
