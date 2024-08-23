@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ManageIncidentsComponent } from './manage-incidents.component';
 import { MAT_DIALOG_DATA, MAT_DIALOG_DEFAULT_OPTIONS, MatDialogRef } from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('ManageIncidentsComponent', () => {
   let component: ManageIncidentsComponent;
@@ -12,6 +13,7 @@ describe('ManageIncidentsComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ManageIncidentsComponent, BrowserAnimationsModule,],
       providers: [
+        provideHttpClient(),
         { provide: MatDialogRef, useValue: matDialogSpy },
 
       ]

@@ -9,6 +9,7 @@ describe('StatutIncidentInfoComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [StatusIncidentInfoComponent]
+      
     })
     .compileComponents();
 
