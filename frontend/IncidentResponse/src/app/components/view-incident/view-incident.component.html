@@ -31,7 +31,7 @@
         <mat-card appearance="outlined">
             <mat-card-content>
                 <div class="status">
-                <span>Priority: </span><app-priority-info [value]="incident.priority"></app-priority-info>
+                <span>Priority: </span><app-priority-info [value]="incident.priority.valueOf()"></app-priority-info>
                 </div>
                 <div class="status">
                     <span>Status: </span><app-status-incident-info [value]="incident.status"></app-status-incident-info> 

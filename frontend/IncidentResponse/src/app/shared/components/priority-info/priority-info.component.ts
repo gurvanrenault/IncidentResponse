@@ -10,5 +10,5 @@ import { Component, Input } from '@angular/core';
 })
 export class PriorityInfoComponent {
   
-  @Input() value = 0;
+  @Input() value : number = 0 ;
 }

@@ -11,5 +11,5 @@ import { StatusIncidentEnum } from '../../../enums/StatutsIncidentEnum';
   styleUrl: './status-incident-info.component.scss'
 })
 export class StatusIncidentInfoComponent {
-  @Input() value:string = StatusIncidentEnum.TODO;
+  @Input() value:string = StatusIncidentEnum.TO_DO;
 }
