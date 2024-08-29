@@ -21,7 +21,6 @@ export class IncidentService {
 
   public addIncident(incident:Incident):Observable<Incident>{
     incident.id = this._currentid;
-    incident.status = StatusIncidentEnum.TO_DO;
     const httpOptions = {
       headers: new HttpHeaders({ 
         'access-control-allow-origin':'*'
@@ -41,15 +40,20 @@ export class IncidentService {
   }
 
   public updateIncident(incident:Incident){
-    const idIncident = incident.id;
-    let incidents = this._incidentsSubject.value;
-    var elementPos = incidents.map(function(x) {return x.id; }).indexOf(idIncident);
-    incidents[elementPos] = incident;
-    this._incidentsSubject.next(incidents);
-
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        'access-control-allow-origin':'*'
+      })
+    };
+    return this.http.put(this.urlIncident, incident, httpOptions)
   }
-  public getIncidentById(idEdit: number) {
-    return this._incidentsSubject.value.find((element) => element.id == idEdit )
+  public getIncidentById(idIncident: number) {
+    const httpOptions = {
+      headers: new HttpHeaders({ 
+        'access-control-allow-origin':'*'
+      })
+    };
+    return this.http.get<Incident>(this.urlIncident+"/"+idIncident)
   }
 
 

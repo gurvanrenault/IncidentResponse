@@ -38,18 +38,10 @@ export class ViewIncidentComponent implements OnInit {
   }
   ngOnInit(): void {
    
-    this.incidentService.incidents$.subscribe(() =>{
-      const incident = this.incidentService.getIncidentById(this.idIncident)
-      if (incident != undefined){
-        this.incident = incident
-      }
-      else{
-        // Rediriger vers 404 
-      }
-    
-    })
+    this.incidentService.getIncidentById(this.idIncident).subscribe(
+      (res:Incident)=> this.incident = res
+    );
   }
-  
   public getUserNameById(idUser: number| undefined){
     const undefined_return =  'Not specified' 
     if (idUser !=undefined){

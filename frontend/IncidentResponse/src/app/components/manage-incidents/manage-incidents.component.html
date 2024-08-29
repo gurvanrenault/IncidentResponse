@@ -21,11 +21,11 @@
                 </mat-option>
             </mat-select>
         </mat-form-field >
-        <mat-form-field *ngIf="edit===true">  
-            <mat-label>Priorité</mat-label>
+        <mat-form-field>  
+            <mat-label>Status</mat-label>
             <mat-select matNativeControl class="form-select form-select-sm" formControlName="status" >
                 <mat-option *ngFor="let pKey  of statusKeys" [value]="pKey[1]">
-                    {{pKey[0]}}
+                    {{pKey[1]}}
                 </mat-option>
             </mat-select>
         </mat-form-field >

@@ -58,10 +58,7 @@ export class ListIncidentsComponent implements OnInit {
         this.datasource.data =  resp.content;
         this.pageSize = resp.page.size;
         this.numberElements = resp.page.totalElements
-        if (this.paginator != null ){
-          
-          this.datasource.paginator = this.paginator
-        }
+        this.datasource.paginator = this.paginator
       });
   }
 
@@ -70,7 +67,15 @@ export class ListIncidentsComponent implements OnInit {
         height: '500px',
         width: '1000px',
     })
+
     this.dialogCreationIncident.componentInstance.edit = false;
+    this.dialogCreationIncident.afterClosed().subscribe(()=>{
+      this.incidentService.getAllIncidents(this.currentPageNo).subscribe((resp) =>
+        {
+            this.datasource.data =  resp.content;
+            this.numberElements = resp.page.totalElements
+        });
+    });
   }
 
   public getUserNameById(idUtil: number){
@@ -116,6 +121,13 @@ export class ListIncidentsComponent implements OnInit {
     })
     this.dialogCreationIncident.componentInstance.edit = true;
     this.dialogCreationIncident.componentInstance.idEdit = id;
+    this.dialogCreationIncident.afterClosed().subscribe(()=>{
+      this.incidentService.getAllIncidents(this.currentPageNo).subscribe((resp) =>
+        {
+            this.datasource.data =  resp.content;
+            this.numberElements = resp.page.totalElements
+        });
+    });
     }
     
     
