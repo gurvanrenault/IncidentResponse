@@ -28,6 +28,12 @@ public class CommentService implements ICommentService {
     }
 
     @Override
+    public Comment updateComment(Comment comment) {
+        CommentEntity comEntity = this.commentRepository.save(this.commentEntityMapper.domainToEntity(comment));
+        return this.commentEntityMapper.entityToDomain(comEntity);
+    }
+
+    @Override
     public List<Comment> getCommentsByIdIncident(Long idIncident) {
         List<CommentEntity> commentsEntities = this.commentRepository.findAllByIncidentId(idIncident);
         return this.commentEntityMapper.listEntityToDomain(commentsEntities);

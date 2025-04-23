@@ -35,13 +35,28 @@ public class CommentController {
     }
 
     @PostMapping(path = "incidents/{id}/comments")
-    public ResponseEntity<?> addIncident(@PathVariable("id") Long id, @RequestBody CommentDTO commentDTO) {
+    public ResponseEntity<?> addIncidentComment(@PathVariable("id") Long id, @RequestBody CommentDTO commentDTO) {
         Validator<CommentDTO> validator = new CommentValidator();
         Incident incident = this.incidentService.getIncident(id);
         commentDTO.setIncident(this.incidentDTOMapper.domainToApplication(incident));
         if (incident != null && validator.isValid(commentDTO)) {
 
             Comment commentCreated = this.commentService.addComment(this.commentDTOMapper.applicationToDomain(commentDTO));
+            return ResponseEntity.ok(this.commentDTOMapper.domainToApplication(commentCreated));
+        }
+        if (incident == null)
+            return new ResponseEntity<>(new IncidentResponseError(ErrorsEnum.ERROR_NOT_FOUND_INCIDENT.getCode(), ErrorsEnum.ERROR_NOT_FOUND_INCIDENT.getMessage()), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(new IncidentResponseError(ErrorsEnum.ERROR_INVALID_COMMENT.getCode(), ErrorsEnum.ERROR_INVALID_COMMENT.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+    @PutMapping(path = "incidents/{id}/comments")
+    public ResponseEntity<?> updateIncidentComment(@PathVariable("id") Long id, @RequestBody CommentDTO commentDTO) {
+        Validator<CommentDTO> validator = new CommentValidator();
+        Incident incident = this.incidentService.getIncident(id);
+        commentDTO.setIncident(this.incidentDTOMapper.domainToApplication(incident));
+        if (incident != null && validator.isValid(commentDTO)) {
+
+            Comment commentCreated = this.commentService.updateComment(this.commentDTOMapper.applicationToDomain(commentDTO));
             return ResponseEntity.ok(this.commentDTOMapper.domainToApplication(commentCreated));
         }
         if (incident == null)
