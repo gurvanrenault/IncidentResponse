@@ -1,5 +1,6 @@
 package application.validators;
 
+import com.incidentresponse.application.application.IncidentApplication;
 import com.incidentresponse.application.dto.CommentDTO;
 import com.incidentresponse.application.dto.IncidentDTO;
 import com.incidentresponse.application.dto.UserDTO;
@@ -8,7 +9,9 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
+@SpringBootTest(classes = IncidentApplication.class)
 public class TestCommentValidator {
 
     private CommentValidator commentValidator;
