@@ -17,7 +17,6 @@ import { MatDialogModule,MatDialogRef } from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { StatusSnackbarComponent } from '../../shared/components/status-snackbar/status-snackbar.component';
 import { MessageStatusTypeEnum } from '../../enums/MessageStatusTypeEnum';
-import { stat } from 'node:fs/promises';
 @Component({
   selector: 'app-manage-incidents',
   standalone: true,

@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Incident } from '../../models/Incident';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { StatusIncidentEnum } from '../../../enums/StatutsIncidentEnum';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { nextTick } from 'node:process';
-import { error } from 'node:console';
+
 
 @Injectable({
   providedIn: 'root',
