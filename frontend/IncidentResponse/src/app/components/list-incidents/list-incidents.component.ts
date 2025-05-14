@@ -20,7 +20,7 @@ import { PriorityEnum } from '../../enums/PriorityEnum';
 import { StatusSnackbarComponent } from '../../shared/components/status-snackbar/status-snackbar.component';
 import { MessageStatusTypeEnum } from '../../enums/MessageStatusTypeEnum';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 @Component({
   selector: 'app-list-incidents',
   standalone: true,
@@ -31,15 +31,15 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ListIncidentsComponent implements OnInit {
 
-  
+
   @ViewChild('paginator') paginator: MatPaginator | null = null ;
   private _snackBar = inject(MatSnackBar);
-  
+
   currentPageNo = 0
   pageSize = 0;
   numberElements = 0;
-  dialogCreationIncident: MatDialogRef<ManageIncidentsComponent> | undefined 
-  
+  dialogCreationIncident: MatDialogRef<ManageIncidentsComponent> | undefined
+
   datasource = new MatTableDataSource();
   displayColumns = ['id','title','user','priority','status','actions']
   priorityEnum =  PriorityEnum;
@@ -47,10 +47,10 @@ export class ListIncidentsComponent implements OnInit {
               private incidentService:IncidentService,
               private userService:UserService,
               private router:Router
-  ) { 
-    
+  ) {
+
   }
-  
+
   ngOnInit(): void {
     this.incidentService.getAllIncidents(this.currentPageNo).subscribe((resp) =>
       {
@@ -113,7 +113,7 @@ export class ListIncidentsComponent implements OnInit {
   public viewIncident(id: number) {
     this.router.navigate(['/incident', id])
     }
-  
+
     public editIncident(id: number) {
     this.dialogCreationIncident = this.dialog.open(ManageIncidentsComponent,{
       height: '500px',
@@ -129,8 +129,8 @@ export class ListIncidentsComponent implements OnInit {
         });
     });
     }
-    
-    
+
+
     public pageEvents($event: PageEvent) {
       this.currentPageNo =$event.pageIndex;
 
@@ -139,7 +139,7 @@ export class ListIncidentsComponent implements OnInit {
           this.datasource.data =  resp.content;
         });
       }
-  
+
 
 
 

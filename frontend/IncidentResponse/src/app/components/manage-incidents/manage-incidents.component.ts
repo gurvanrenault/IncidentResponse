@@ -74,7 +74,6 @@ export class ManageIncidentsComponent implements OnInit {
         this.incidentService.getIncidentById(this.idEdit).subscribe(
           (res)=> { 
             incident = res
-            console.log()
             if (incident !=  undefined ){
               this.incidentForm = new FormGroup(
                 {
