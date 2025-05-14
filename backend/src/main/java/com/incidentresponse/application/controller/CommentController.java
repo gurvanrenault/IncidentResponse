@@ -64,6 +64,7 @@ public class CommentController {
         return new ResponseEntity<>(new IncidentResponseError(ErrorsEnum.ERROR_INVALID_COMMENT.getCode(), ErrorsEnum.ERROR_INVALID_COMMENT.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
+
     @GetMapping(path = "incidents/{id}/comments")
     public ResponseEntity<?> getCommentsByIdIncident(@PathVariable("id") Long id) {
         Incident incident = this.incidentService.getIncident(id);
