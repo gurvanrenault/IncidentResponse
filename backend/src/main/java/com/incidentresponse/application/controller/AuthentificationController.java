@@ -44,7 +44,9 @@ public class AuthentificationController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody UserDTO userDto) {
             UserValidator userValidator = new UserValidator();
-            if (! userValidator.isValid())
+            if (! userValidator.isValid(userDto)){
+                return new ResponseEntity<>(new IncidentResponseError(ErrorsEnum.ERROR_INVALID_USER.getCode(),ErrorsEnum.ERROR_INVALID_USER.getMessage()), HttpStatus.NOT_ACCEPTABLE);
+            }
             if (!this.userService.isUserByMailExists(userDto.getMail())) {
                 User user = this.userService.addUser(this.userDTOMapper.applicationToDomain(userDto));
                 return ResponseEntity.ok(this.userDTOMapper.domainToApplication(user));

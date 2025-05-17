@@ -9,7 +9,7 @@ public class UserValidator implements Validator<UserDTO> {
     @Override
     public boolean isValid(UserDTO obj) {
 
-        boolean isValid = (obj.getPassword() != null) &&  (obj.getMail() != null)
+        boolean isValid = (obj.getPassword() != null) &&  (obj.getMail() != null);
         EmailValidator mailVal = EmailValidator.getInstance();
         if (!mailVal.isValid(obj.getMail())){
             isValid=false;
