@@ -2,14 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Injectable, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { UserService } from '../../services/userService/user.service';
-import { User } from '../../models/User';
+import { UserService } from '../../shared/services/userService/user.service';
+import { User } from '../../shared/models/User';
 import { MatInputModule } from '@angular/material/input';
-import { Commentary } from '../../models/Commentary';
+import { Commentary } from '../../shared/models/Commentary';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCard, MatCardModule } from '@angular/material/card';
-import { CommentaryService } from '../../services/CommentaryService/commentary.service';
-import { provideAnimations } from '@angular/platform-browser/animations';
+import { CommentaryService } from '../../shared/services/CommentaryService/commentary.service';
+
       
 
     

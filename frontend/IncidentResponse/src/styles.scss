@@ -1,5 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
+$success-color : green;
+$warning-color: #ffc107;
+$fail-color:#e03b3b;
+
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -34,19 +39,19 @@ tr:hover{
   font-weight: bold;
   width: 20px;
 }
-.badge-warning{
- background-color: #ffc107 !important;
+.warning{
+ background-color:  $warning-color;
 }
-.badge-danger{
-  background-color: #c65252;
+.danger{
+  background-color: $fail-color;
   color: whitesmoke;
 }
-.badge-secondary{
-    color: whitesmoke;
-    background-color: #6c757d
+.secondary{
+  color: whitesmoke;
+  background-color: #6c757d
 }
-.badge-sucess{
-  background: green;
+.success{
+  background: $success-color;
   color: whitesmoke;
 }
 // FORMULAR 
@@ -69,4 +74,16 @@ textarea{
   width: 40%;
   height: 5vh;
   margin-left: 1vh;
+}
+.mat-mdc-snack-bar-container {
+  --mat-mdc-snack-bar-button-color: whitesmoke;
+  --mdc-snackbar-supporting-text-color: whitesmoke;
+  &.success {
+    --mdc-snackbar-container-color: green ;
+  
+  }
+  &.failure {
+    --mdc-snackbar-container-color: #e03b3b;
+  }
+ 
 }

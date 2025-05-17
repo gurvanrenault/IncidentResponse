@@ -12,11 +12,15 @@ export class CommentaryService {
    }
 
    public addCommentary(incidentId:number, commentary:Commentary){
-    let incident = this.incidentService.getIncidentById(incidentId);
+    let incident;
+    this.incidentService.getIncidentById(incidentId).subscribe(
+      (res:Incident) => incident = res
+
+    );
     if (incident != undefined){
       
       commentary.date = new Date()
-      incident.commentaries === undefined ? incident.commentaries=[commentary] : incident.commentaries.push(commentary);
+      //incident.commentaries === undefined ? incident.commentaries=[commentary] : incident.commentaries.push(commentary);
       this.incidentService.updateIncident(incident);
     }
 

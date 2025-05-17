@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { IncidentService } from '../../services/incidentService/incident.service';
-import { UserService } from '../../services/userService/user.service';
-import { Incident } from '../../models/Incident';
-import { PriorityInfoComponent } from "../priority-info/priority-info.component";
+import { IncidentService } from '../../shared/services/incidentService/incident.service';
+import { UserService } from '../../shared/services/userService/user.service';
+import { Incident } from '../../shared/models/Incident';
+import { PriorityInfoComponent } from "../../shared/components/priority-info/priority-info.component";
 import { MatCardModule} from '@angular/material/card';
-import { StatusIncidentInfoComponent } from "../status-incident-info/status-incident-info.component";
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule, DatePipe, Location } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { ManageCommentariesComponent } from '../manage-commentaries/manage-commentaries.component';
 import { CommentaryComponent } from "../commentary/commentary.component";
+import { StatusIncidentInfoComponent } from '../../shared/components/status-incident-info/status-incident-info.component';
 @Component({
   selector: 'app-view-incident',
   standalone: true,
@@ -38,18 +38,10 @@ export class ViewIncidentComponent implements OnInit {
   }
   ngOnInit(): void {
    
-    this.incidentService.incidents$.subscribe(() =>{
-      const incident = this.incidentService.getIncidentById(this.idIncident)
-      if (incident != undefined){
-        this.incident = incident
-      }
-      else{
-        // Rediriger vers 404 
-      }
-    
-    })
+    this.incidentService.getIncidentById(this.idIncident).subscribe(
+      (res:Incident)=> this.incident = res
+    );
   }
-  
   public getUserNameById(idUser: number| undefined){
     const undefined_return =  'Not specified' 
     if (idUser !=undefined){

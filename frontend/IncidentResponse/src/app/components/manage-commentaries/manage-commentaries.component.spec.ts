@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ManageCommentariesComponent } from './manage-commentaries.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('ManageCommentariesComponent', () => {
   let component: ManageCommentariesComponent;
@@ -9,7 +10,8 @@ describe('ManageCommentariesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ManageCommentariesComponent, BrowserAnimationsModule]
+      imports: [ManageCommentariesComponent, BrowserAnimationsModule],
+      providers:[provideHttpClient()]
     })
     .compileComponents();
 
