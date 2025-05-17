@@ -9,8 +9,8 @@ public enum ErrorsEnum {
 
     ERROR_INVALID_INCIDENT("IRS-ERR-01", "This incident is invalid"),
     ERROR_NOT_FOUND_INCIDENT("IRS-ERR-02", "The incident requested doesn't exist"),
-    ERROR_INVALID_COMMENT("IRS-ERR-03", "The comment is invalid");
-
+    ERROR_INVALID_COMMENT("IRS-ERR-03", "The comment is invalid"),
+    ERROR_USER_EXISTS("IRS-ERR-04", "This user already exists");
     public final String code;
     public final String message;
 

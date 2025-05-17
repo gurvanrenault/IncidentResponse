@@ -10,6 +10,7 @@ import lombok.Setter;
 public class User {
     private Long id;
     private String mail;
+    private String password;
     private String lastname;
     private String name;
     private String company;

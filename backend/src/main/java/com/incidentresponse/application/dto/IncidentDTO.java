@@ -2,6 +2,7 @@ package com.incidentresponse.application.dto;
 
 import com.incidentresponse.enums.PriorityStatusEnum;
 import com.incidentresponse.enums.StatusIncidentEnum;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,8 +10,7 @@ import lombok.Setter;
 import java.util.Date;
 
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
 public class IncidentDTO {
 
 
